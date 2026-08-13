@@ -9,9 +9,13 @@ import (
 func Server() *gin.Engine {
 	route := gin.Default()
 
-	bioskop := route.Group("/api/bioskop")
+	bioskop := route.Group("/api")
 	{
-		bioskop.POST("/create", controllers.CreateBioskop)
+		bioskop.GET("/bioskop", controllers.GetAllBioskop)
+		bioskop.GET("/bioskop/:id", controllers.GetBioskopByID)
+		bioskop.POST("/bioskop", controllers.CreateBioskop)
+		bioskop.PUT("/bioskop/:id", controllers.UpdateBioskop)
+		bioskop.DELETE("/bioskop/:id", controllers.DeleteBioskop)
 	}
 
 	return route
