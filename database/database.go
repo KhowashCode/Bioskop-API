@@ -3,7 +3,9 @@ package database
 import (
 	"Bioskop-API/models"
 	"fmt"
+	"os"
 
+	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -12,7 +14,11 @@ var DB *gorm.DB
 
 func DatabaseConnection() {
 	defer tableRegister()
-	dsn := "host=localhost user=postgres password=12345 dbname=bioskop port=5432 sslmode=disable"
+	if err := godotenv.Load(".env"); err != nil {
+		panic("Failed to load dotenv!")
+	}
+
+	dsn := fmt.Sprintf("host=%v user=%v password=%v dbname=bioskop port=%v sslmode=disable", os.Getenv("DB_HOST"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_PORT"))
 
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
