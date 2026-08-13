@@ -1,7 +1,9 @@
 # Bioskop-API
+Project ini tujukan untuk tugas dari course sanbercode-backend-golang-batch-79
+
 
 Techstack:
-- lang: Go (Golang)
-- framework: Gin
+- Lang: Go (Golang)
+- Framework: Gin
 - ORM: Gorm
 - Database: PostgreSQL
