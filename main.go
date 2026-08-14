@@ -8,5 +8,10 @@ import (
 
 func main() {
 	database.DatabaseConnection()
-	routes.Server().Run(":" + os.Getenv("PGPORT"))
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":8080"
+	}
+	routes.Server().Run(":" + port)
 }
