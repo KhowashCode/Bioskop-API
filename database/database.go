@@ -15,7 +15,7 @@ var DB *gorm.DB
 func DatabaseConnection() {
 	defer tableRegister()
 	if err := godotenv.Load(".env"); err != nil {
-		panic("Failed to load dotenv!")
+		fmt.Println("Failed to load dotenv!")
 	}
 
 	dsn := fmt.Sprintf("host=%v user=%v password=%v dbname=%v port=%v sslmode=disable", os.Getenv("PGHOST"), os.Getenv("PGUSER"), os.Getenv("PGPASSWORD"), os.Getenv("PGDATABASE"), os.Getenv("PGPORT"))
